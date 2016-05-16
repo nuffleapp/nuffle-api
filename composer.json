@@ -1,0 +1,19 @@
+{
+  "name": "nuffleapp/nuffle-api",
+  "description": "An API for rolling any number of die with any number of sides.",
+  "keywords": ["d20", "random", "nuffle", "dice", "api"],
+  "homepage": "http://github.com/nuffleapp/nuffle-api",
+  "license": "MIT",
+  "authors": [
+    {
+        "name": "Zachary Flower",
+        "email": "zach@zacharyflower.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.0",
+    "slim/slim": "^3.1",
+    "rollbar/rollbar": "~0.15.0",
+    "nuffleapp/nuffle": "*"
+  }
+}
