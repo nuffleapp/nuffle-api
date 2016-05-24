@@ -1,39 +1,57 @@
 <?php
 
 /**
- * Roll any number of x-sided dice
+ * Calculate the results of a given dice equation
  *
- * @param  Integer  $count Number of dice to roll
- * @param  Integer  $sides Number of sides per dice
- * @return Object          Response object with individual and total dice values
+ * @param  String $equation Dice equation 
+ * @return Object           Response object with equation results
  */
 $app->get('/v1/roll', function ($request, $response, $args) {
-  $count = (int)$request->getQueryParam('count', 1);
-  $sides = (int)$request->getQueryParam('sides', NULL);
+  // dice equation 
+  $equation = $request->getQueryParam('equation', '');
 
-  // can't roll less than 1 dice
-  if ( !is_numeric($count) || $count < 1 ) {
-    throw new \Exception("Invalid number of dice.");
-  }
-
-  $results = array();
-
-  // roll the specified number of dice
-  for ( $i = 0; $i < $count ; $i++ ) {
-    $results[] = \Nuffle\Nuffle::roll($sides);
-  }
-
-  // sum up the results
-  $total = array_sum($results);
+  // roll 'em!
+  $data = \Nuffle\Nuffle::roll($equation);
 
   // format the response
-  $data = array(
-      'results' => $results,
-      'total' => $total
-    );
-
-  // respond with json
   $response->withJson($data, 200);
 
+  return $response;
+});
+
+$app->post('/v1/roll/slack', function($request, $response, $args) {
+  $token = $request->getParam('token', NULL);
+  $equation = $request->getParam('text', '');
+
+  if ( $equation == 'help' ) {
+    $data = array(
+      'response_type' => 'ephemeral',
+      'text' => "How to use /roll",
+      'attachments' => array(
+          array(
+              'color' => '#pink',
+              'text' => "Nuffle is a dice calculator, allowing you to perform complex dice rolls and calculate their result. To do so, simply use the `/roll <equation>` command.\nEquations must use the standard rpg dice notation format (1d6, 2d20, etc), but otherwise operate much the same as any other calculator.\nAccepted operands are `+`, `-`, `/`, `*`, `(`, and `)`."
+            ),
+          array(
+              'text' => "Example: `/roll 5d6 + 1d20 / (1d6 - 2)`"
+            )
+        )
+    );
+  } else {
+    $results = \Nuffle\Nuffle::roll($equation);
+
+    $data = array(
+      'response_type' => 'ephemeral',
+      'text' => "You rolled a $results->total.",
+      'attachments' => array(
+          array(
+              'color' => '#pink',
+              'text' => "Breakdown: $results->equation"
+            )
+        )
+    );
+  }
+
+  $response->withJson($data, 200);
   return $response;
 });

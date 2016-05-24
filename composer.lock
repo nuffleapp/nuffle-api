@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0545d89450358482eec841af0ad4e644",
-    "content-hash": "92c16b8f915b9a0e45e048d58ad5da45",
+    "hash": "7efb9d48c29f9a92ac6bd31d87acd314",
+    "content-hash": "acde97f247d32c1dd465a4766fc6bfcb",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -79,16 +79,16 @@
         },
         {
             "name": "nuffleapp/nuffle",
-            "version": "v0.1.1",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nuffleapp/nuffle-php.git",
-                "reference": "80a1a0f3b45a720ed9bbf7ec6e70b81f8bd7aae3"
+                "reference": "fafed3a74da41dd30d94681b36b50f4c8a9e1bad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nuffleapp/nuffle-php/zipball/80a1a0f3b45a720ed9bbf7ec6e70b81f8bd7aae3",
-                "reference": "80a1a0f3b45a720ed9bbf7ec6e70b81f8bd7aae3",
+                "url": "https://api.github.com/repos/nuffleapp/nuffle-php/zipball/fafed3a74da41dd30d94681b36b50f4c8a9e1bad",
+                "reference": "fafed3a74da41dd30d94681b36b50f4c8a9e1bad",
                 "shasum": ""
             },
             "require": {
@@ -120,7 +120,7 @@
                 "nuffle",
                 "random"
             ],
-            "time": "2016-05-13 04:54:10"
+            "time": "2016-05-20 19:43:56"
         },
         {
             "name": "pimple/pimple",
