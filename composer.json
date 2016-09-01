@@ -15,6 +15,8 @@
     "slim/slim": "^3.1",
     "rollbar/rollbar": "~0.15.0",
     "vlucas/phpdotenv": "~2.2",
-    "nuffleapp/nuffle": "1.*"
+    "nuffleapp/nuffle": "1.*",
+    "zachflower/indefinite-article": "~0.1.0",
+    "curl/curl": "~1.4"
   }
 }

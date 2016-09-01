@@ -7,6 +7,13 @@ $container['notFoundHandler'] = function ($c) {
   };
 };
 
+// beautify the 405 handler (treat like a 404)
+$container['notAllowedHandler'] = function ($c) {
+  return function ($request, $response) use ($c) {
+    return $c['response']->withJson(array('error' => 'Not found.'), 400);
+  };
+};
+
 // beautify the exception handler
 $container['errorHandler'] = function ($c) {
   return function ($request, $response, $exception) use ($c) {

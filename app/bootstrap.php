@@ -4,13 +4,13 @@
 date_default_timezone_set('America/Denver');
 
 // setup error logging in the production environment
-if ( isset($_ENV['environment']) && $_ENV['environment'] == 'production' ) {
+if ( getenv('environment') == 'production' ) {
   // hide all errors
   ini_set('display_errors', false);
 
   // send data up to rollbar (if configured)
-  if ( isset($_ENV['ROLLBAR_ACCESS_TOKEN']) ) {
-    Rollbar::init(array('access_token' => $_ENV['ROLLBAR_ACCESS_TOKEN']));
+  if ( getenv('ROLLBAR_ACCESS_TOKEN') ) {
+    Rollbar::init(array('access_token' => getenv('ROLLBAR_ACCESS_TOKEN')));
   }
 
   // beautify fatal errors
